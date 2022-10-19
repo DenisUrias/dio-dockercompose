@@ -7,3 +7,22 @@ services:
     - '80:80'
     volumes:
     - ./portal:/usr/local/apache2/htdocs
+  
+  banco:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: senhaforte
+      MYSQL_DATABASE: buscacep
+      MYSQL_USER: usuario
+      MYSQL_PASSWORD: senhafraca
+    volumes:
+    - ./dados:/var/lib/mysql
+    ports:
+    - '3306:3306'
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
